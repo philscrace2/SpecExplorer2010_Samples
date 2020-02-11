@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StopWatch.TestSuite", "StopWatch.TestSuite\StopWatch.TestSuite.csproj", "{2BE5903A-D042-4451-9E20-31EA61CA168F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StopWatch.Sample", "StopWatch.Sample\StopWatch.Sample.csproj", "{B3564A96-7F9C-408E-AE0A-A735B6E1F771}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StopWatch", "StopWatch\StopWatch.csproj", "{7BCF0CA2-44EB-45A9-BDD4-8999085FCDF8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2BE5903A-D042-4451-9E20-31EA61CA168F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2BE5903A-D042-4451-9E20-31EA61CA168F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2BE5903A-D042-4451-9E20-31EA61CA168F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2BE5903A-D042-4451-9E20-31EA61CA168F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3564A96-7F9C-408E-AE0A-A735B6E1F771}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3564A96-7F9C-408E-AE0A-A735B6E1F771}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3564A96-7F9C-408E-AE0A-A735B6E1F771}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3564A96-7F9C-408E-AE0A-A735B6E1F771}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7BCF0CA2-44EB-45A9-BDD4-8999085FCDF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7BCF0CA2-44EB-45A9-BDD4-8999085FCDF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7BCF0CA2-44EB-45A9-BDD4-8999085FCDF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7BCF0CA2-44EB-45A9-BDD4-8999085FCDF8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,331 @@
+﻿// This is a Spec Explorer coordination script (Cord version 1.0).
+// Here is where you define configurations and machines describing the
+// exploration to be performed.
+
+using Microsoft.Modeling;
+using Travelling.Sample;
+using Travelling;
+using TravellingCounter;
+using TravellingSchedule;
+
+config Main 
+{ 
+    action abstract static void Implementation.start(Travelling.Commuter commuter);
+    action abstract static void Implementation.departed(string name, string station);
+    action abstract static void Implementation.arrive(string name, string station);
+    action abstract static void Implementation.journey_end(string name, string station);
+    action abstract static void Implementation.finish(string name);
+    action abstract static void Implementation.something(Travelling.Commuter commuter);
+
+    switch StepBound = 128;
+    switch PathDepthBound = 128;
+    switch TestClassBase = "vs";
+    switch GeneratedTestPath = "..\\SpecExplorer1.TestSuite";
+    switch GeneratedTestNamespace = "SpecExplorer1.TestSuite";
+    switch TestEnabled = false;
+    switch ForExploration = false;
+}
+
+config Main1
+{ 
+    action abstract static void Implementation.start(TravellingCounter.Commuter commuter);
+    action abstract static int Implementation.departed(string name, string station, int count);
+    action abstract static int Implementation.arrive(string name, string station, int count);
+    action abstract static void Implementation.journey_end(string name, string station, int count);
+    action abstract static void Implementation.finish(string name);
+    action abstract static void Implementation.something(TravellingCounter.Commuter commuter);
+
+    switch StepBound = 128;
+    switch PathDepthBound = 128;
+    switch TestClassBase = "vs";
+    switch GeneratedTestPath = "..\\SpecExplorer1.TestSuite";
+    switch GeneratedTestNamespace = "SpecExplorer1.TestSuite";
+    switch TestEnabled = false;
+    switch ForExploration = false;
+}
+
+config Main2
+{ 
+    action abstract static void Implementation.start(TravellingClock.Commuter commuter);
+    action abstract static int Implementation.departed(string name, string station, int count, string clock);
+    action abstract static int Implementation.arrive(string name, string station, int count, string clock);
+    action abstract static void Implementation.journey_end(string name, string station, int count, string clock);
+    action abstract static void Implementation.finish(string name);
+    action abstract static void Implementation.something(TravellingClock.Commuter commuter);
+
+    switch StepBound = 1094;
+    switch PathDepthBound = 1094;
+    switch StateBound = 1094;
+    switch TestClassBase = "vs";
+    switch GeneratedTestPath = "..\\SpecExplorer1.TestSuite";
+    switch GeneratedTestNamespace = "SpecExplorer1.TestSuite";
+    switch TestEnabled = false;
+    switch ForExploration = false;
+}
+
+config Main3
+{ 
+    action abstract static void Implementation.start(TravellingIsolateClocks.Commuter commuter);
+    action abstract static int Implementation.departed(string name, string station, int count, string clock);
+    action abstract static int Implementation.arrive(string name, string station, int count, string clock);
+    action abstract static void Implementation.journey_end(string name, string station, int count, string clock);
+    action abstract static void Implementation.finish(string name);
+    action abstract static void Implementation.something(TravellingIsolateClocks.Commuter commuter);
+
+    switch StepBound = 1094;
+    switch PathDepthBound = 1094;
+    switch StateBound = 1094;
+    switch TestClassBase = "vs";
+    switch GeneratedTestPath = "..\\SpecExplorer1.TestSuite";
+    switch GeneratedTestNamespace = "SpecExplorer1.TestSuite";
+    switch TestEnabled = false;
+    switch ForExploration = false;
+}
+
+config Main4
+{ 
+    action abstract static void Implementation.start(string commuter, string origin, string destination, int initialOffset);
+    action abstract static int Implementation.travel_depart(string clock, TravellingSchedule.Commuter commuter, string station);
+
+    //, MapContainer<int, Map<string, string>> commuter
+    action abstract static int Implementation.travel_arrive(string clock, TravellingSchedule.Commuter commuter, string station);
+    action abstract static void Implementation.journey_end(string clock, string completedCommuter);
+    action abstract static void Implementation.finish(string clock, TravellingSchedule.Commuter commuter);    
+
+    switch StepBound = 10940;
+    switch PathDepthBound = 10940;
+    switch StateBound = 10940;
+    switch TestClassBase = "vs";
+    switch GeneratedTestPath = "..\\SpecExplorer1.TestSuite";
+    switch GeneratedTestNamespace = "SpecExplorer1.TestSuite";
+    switch TestEnabled = false;
+    switch ForExploration = false;   
+}
+
+config Second : Main
+{   
+    //action abstract static void Implementation.journey_end(string name, string station)
+    //where
+    //{.        
+        //Condition.In(station, "Mezzocorona");
+    //.};
+
+    action abstract static void Implementation.start(Commuter commuter)
+    where
+    {.
+        Condition.In(commuter.name, "alice");              
+        Condition.In(commuter.origin, "Lavis");
+        Condition.In(commuter.destination, "Mezzocorona");
+    .};
+}
+
+machine ASimpleCommute() : Second where ForExploration = true
+{
+    construct model program from Second  where Scope = "Travelling"
+}
+
+config TwoCommuters : Main1
+{   
+    //action abstract static void Implementation.journey_end(string name, string station)
+    //where
+    //{.        
+        //Condition.In(station, "Mezzocorona");
+    //.};
+
+    action abstract static void Implementation.start(TravellingCounter.Commuter commuter)
+    where
+    {.
+        Condition.In(commuter.name, "kevin", "bob");              
+        Condition.In(commuter.origin, "Lavis", "Lavis");
+        Condition.In(commuter.destination, "Mezzocorona", "Mezzocorona");
+    .};
+
+    //action abstract static int Implementation.departed(string name, string station, int countDown)
+    //where
+    //{.
+        //Condition.In(countDown, 70);
+    //.};
+}
+
+config OneCommuter : Main1
+{   
+    //action abstract static void Implementation.journey_end(string name, string station)
+    //where
+    //{.        
+        //Condition.In(station, "Mezzocorona");
+    //.};
+
+    action abstract static void Implementation.start(TravellingCounter.Commuter commuter)
+    where
+    {.
+        Condition.In(commuter.name, "kevin");              
+        Condition.In(commuter.origin, "Lavis");
+        Condition.In(commuter.destination, "Mezzocorona");
+    .};
+
+    action abstract static int Implementation.departed(string name, string station, int countDown)
+    where
+    {.
+        Condition.In(station, "Lavis", "Trento", "Segantini Dogana", "Travai Al Nuoto", "Mezzocorona");
+    .};
+}
+
+machine ModelProgram() : Main where ForExploration = true
+{
+    construct model program from Main where Scope = "Travelling"
+}
+
+machine OneCommutersMP() : OneCommuter where ForExploration = true
+{
+    construct model program from OneCommuter where Scope = "TravellingCounter.ModelProgram"
+}
+
+config BobClock : Main2
+{   
+    //action abstract static void Implementation.journey_end(string name, string station)
+    //where
+    //{.        
+        //Condition.In(station, "Mezzocorona");
+    //.};
+
+    action abstract static void Implementation.start(TravellingClock.Commuter commuter)
+    where
+    {.
+        Condition.In(commuter.name, "bob");              
+        Condition.In(commuter.origin, "Lavis");
+        Condition.In(commuter.destination, "Trento");
+        Condition.In(commuter.startTime, "15:00:00");
+    .};
+
+    action abstract static int Implementation.departed(string name, string station, int countDown)
+    where
+    {.
+        Condition.In(station, "Lavis", "Trento", "Segantini Dogana");
+    .};
+}
+
+machine BobClockMP() : BobClock where ForExploration = true
+{
+    construct model program from BobClock where Scope = "TravellingClock.ModelProgram"
+}
+
+config AliceClock : Main2
+{      
+
+    action abstract static void Implementation.start(TravellingClock.Commuter commuter)
+    where
+    {.
+        Condition.In(commuter.name, "alice", "bob");              
+        Condition.In(commuter.origin, "Lavis", "Lavis");
+        Condition.In(commuter.destination, "Trento", "Trento");
+        Condition.In(commuter.startTime, "15:00:00", "15:06:00");
+    .};
+
+    //action abstract static int Implementation.departed(string name, string station, int countDown)
+    //where
+    //{.
+        //Condition.In(station, "Lavis", "Trento", "Segantini Dogana");
+    //.};
+}
+
+machine BobAliceClockMP() : AliceClock where ForExploration = true
+{
+    construct model program from AliceClock where Scope = "TravellingClock.ModelProgram"
+}
+
+machine BobAliceClockTests() : AliceClock where TestEnabled = true, ForExploration = true
+{
+    construct test cases where Strategy = "LongTests" for BobAliceClockMP
+}
+
+config IsolateClocks : Main3
+{
+    action abstract static void Implementation.start(TravellingIsolateClocks.Commuter commuter)
+    where
+    {.
+        Condition.In(commuter.name, "alice", "bob");  
+    .};
+
+}
+
+machine IsolatedClocks() : IsolateClocks where ForExploration = true
+{
+    construct model program from IsolateClocks where Scope  = "TravellingIsolateClocks.ModelProgram"
+}
+
+machine IsolatedClocksTests() : IsolateClocks where TestEnabled = true, ForExploration = true
+{
+    construct test cases where Strategy = "LongTests" for IsolatedClocks    
+
+}
+
+config Schedule : Main4
+{
+    action abstract static void Implementation.start(string commuter, string origin, string destination, int initialOffset, string start_time)
+    where
+    {.
+        Condition.In(commuter, "alice");        
+        Condition.In(origin, "Lavis");
+        Condition.In(destination, "Mezzocorona");
+        Condition.In(initialOffset, 1);
+        Condition.In(start_time, "15:05:00");                
+    .};
+    
+}
+
+machine ScheduleClock() : Schedule where ForExploration = true
+{
+    construct model program from Schedule where Scope  = "TravellingSchedule.ModelProgram"   
+
+}
+
+
+config Schedule2Commuter : Main4
+{
+    action abstract static void Implementation.start(string commuter, string origin, string destination, int initialOffset, string start_time)
+    where
+    {.
+        Condition.In(commuter, "alice", "bob");        
+        Condition.In(origin, "Lavis", "Lavis");
+        Condition.In(destination, "Trento", "Trento");
+        Condition.In(initialOffset, 1, 1);
+        Condition.In(start_time, "15:05:00");            
+    .};
+    
+}
+
+machine Schedule2CommuterClock() : Schedule2Commuter where ForExploration = true
+{
+    construct model program from Schedule2Commuter where Scope  = "TravellingSchedule.ModelProgram"   
+
+}
+
+machine Schedule2CommuterClockTest() : Schedule2Commuter where ForExploration = true, TestEnabled = true
+{
+    construct test cases where Strategy = "LongTests" for Schedule2CommuterClock
+}
+
+config Schedule3Commuter : Main4
+{
+    action abstract static void Implementation.start(string commuter, string origin, string destination, int initialOffset, string start_time)
+    where
+    {.
+        Condition.In(commuter, "alice", "bob", "carol");        
+        Condition.In(origin, "Lavis", "Lavis", "Lavis");
+        Condition.In(destination, "Trento", "Trento", "Trento");
+        Condition.In(initialOffset, 1, 1, 1);
+        Condition.In(start_time, "15:05:00");               
+    .};
+    
+}
+
+machine Schedule3CommuterClock() : Schedule3Commuter where ForExploration = true
+{
+    construct model program from Schedule3Commuter where Scope  = "TravellingSchedule.ModelProgram"   
+
+}
+
+machine Schedule3CommuterClockTest() : Schedule3Commuter where ForExploration = true, TestEnabled = true
+{
+    construct test cases where Strategy = "LongTests" for Schedule3CommuterClock
+}

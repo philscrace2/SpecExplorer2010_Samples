@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpecExplorer4.TestSuite", "SpecExplorer4.TestSuite\SpecExplorer4.TestSuite.csproj", "{240C6A5F-F685-4128-BFB1-E38D35BC8964}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpecExplorer4.Sample", "SpecExplorer4.Sample\SpecExplorer4.Sample.csproj", "{19935850-EE17-4E58-B28D-76C78E4AE45C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpecExplorer4", "SpecExplorer4\SpecExplorer4.csproj", "{FC9BA70F-3626-4A5E-B22E-D908BE40268A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{240C6A5F-F685-4128-BFB1-E38D35BC8964}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{240C6A5F-F685-4128-BFB1-E38D35BC8964}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{240C6A5F-F685-4128-BFB1-E38D35BC8964}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{240C6A5F-F685-4128-BFB1-E38D35BC8964}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19935850-EE17-4E58-B28D-76C78E4AE45C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19935850-EE17-4E58-B28D-76C78E4AE45C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19935850-EE17-4E58-B28D-76C78E4AE45C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19935850-EE17-4E58-B28D-76C78E4AE45C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC9BA70F-3626-4A5E-B22E-D908BE40268A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC9BA70F-3626-4A5E-B22E-D908BE40268A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC9BA70F-3626-4A5E-B22E-D908BE40268A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC9BA70F-3626-4A5E-B22E-D908BE40268A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(SpecExplorer.ActivityCompletionStatus) = preSolution
+		SpecExplorer.ActivityCompletionStatus = TestExisting: ;ModelFromScratch: 
+	EndGlobalSection
+EndGlobal

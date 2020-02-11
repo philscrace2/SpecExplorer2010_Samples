@@ -1,0 +1,36 @@
+﻿// This is a Spec Explorer coordination script (Cord version 1.0).
+// Here is where you define configurations and machines describing the
+// exploration to be performed.
+
+using newsreaderui.Sample;
+
+/// Contains actions of the model, bounds, and switches.
+config Main 
+{  
+    action static void newsreader_impl.SelectMessages();
+    action static void newsreader_impl.SelectTopics();
+    action static void newsreader_impl.ShowTitles();
+    action static void newsreader_impl.ShowText();
+    action static void newsreader_impl.SortByFirst();
+    action static void newsreader_impl.SortByMostRecent();
+
+
+    switch StepBound = 128;
+    switch PathDepthBound = 128;
+    switch TestClassBase = "vs";
+    switch GeneratedTestPath = "..\\SpecExplorer1.TestSuite";
+    switch GeneratedTestNamespace = "SpecExplorer1.TestSuite";
+    switch TestEnabled = false;
+    switch ForExploration = true;
+}
+
+
+machine NewsreaderModelProgram() : Main where TestEnabled = true
+{
+    construct model program from Main
+}
+
+machine NewsreaderTestSuite() : Main where TestEnabled = true
+{
+    construct test cases for MyModelProgram
+}

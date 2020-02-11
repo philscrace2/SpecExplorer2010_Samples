@@ -1,0 +1,74 @@
+﻿// This is a Spec Explorer coordination script (Cord version 1.0).
+// Here you define configurations and machines describing the
+// exploration task you want to perform.
+
+/// Contains actions of the model, bounds, and switches.
+using GuidedModelExample;
+using GuidedModelExample.Sample;
+using Microsoft.Modeling;
+
+config Main 
+{
+    action abstract static void Implementation.login(GuidedModelExample.Clinician clinician);    
+    action abstract static void Implementation.logoff(GuidedModelExample.Clinician clinician);
+    action abstract static void Implementation.home_screen();
+    action abstract static void Implementation.new_screening_main_button();    
+    action abstract static void Implementation.results_main_button();
+    action abstract static void Implementation.tutorial_main_button();
+    action abstract static void Implementation.results_toolbar_button();
+    action abstract static void Implementation.home_screen_toolbar_button();
+    action abstract static void Implementation.settings_toolbar_button();
+    action abstract static void Implementation.new_screening_screen();    
+    action abstract static void Implementation.new_screening_done_button(GuidedModelExample.Patient patient);
+    action abstract static GuidedModelExample.Image Implementation.take_image();
+    action abstract static void Implementation.navigate_to_images();
+    action abstract static void Implementation.take_image(GuidedModelExample.Image image);
+    action abstract static void Implementation.phone_images_store();
+    action abstract static void Implementation.camera_done_button();
+    action abstract static void Implementation.review_and_send_screen();
+    action abstract static void Implementation.review_and_send_add_from_library_button();
+    action abstract static void Implementation.review_and_send_submit_button();
+    action abstract static void Implementation.choose_from_library_screen();
+    action abstract static void Implementation.choose_from_library_screen_add_button();    
+    action abstract static void Implementation.submitted_notification();
+    action abstract static void Implementation.submitted_notification_done_button();
+    action abstract static void Implementation.results_screen(GuidedModelExample.Image images);
+    action abstract static void Implementation.images_sent(GuidedModelExample.Image image);    
+    action abstract static void Implementation.tutorial_screen();
+    action abstract static void Implementation.tutorial_screen_done_button();
+
+    switch GeneratedTestPath = "..\\GuidedModelExample.TestSuite";
+    switch StepBound = 128;
+    switch PathDepthBound = 128;
+    switch TestClassBase = "vs";    
+    switch TestEnabled = false;
+    switch ForExploration = false;
+}
+
+config AddData : Main
+{
+    action abstract static void Implementation.login(GuidedModelExample.Clinician clinician)
+    where
+    {.
+        Condition.In(clinician.id, "CLINICIAN_007");
+        Condition.In(clinician.password, "PASSWORD");
+    .};
+
+    action abstract static void Implementation.take_image(GuidedModelExample.Image image)
+    where
+    {.
+        Condition.In(image.image_status, ImageStatus.completed);        
+    .};
+
+}
+
+machine RedRouteMachine() : AddData where ForExploration = true
+{
+    construct model program from AddData where Scope = "GuidedModelExample"
+}
+
+machine RedRouteMachineTests() : AddData where TestEnabled = true, ForExploration = true
+{
+    construct test cases where Strategy = "LongTests" for RedRouteMachine
+
+}

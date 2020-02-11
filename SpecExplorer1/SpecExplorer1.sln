@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpecExplorer1.TestSuite", "SpecExplorer1.TestSuite\SpecExplorer1.TestSuite.csproj", "{463A1271-40C6-4BC2-8711-F15B82E89565}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpecExplorer1.Sample", "SpecExplorer1.Sample\SpecExplorer1.Sample.csproj", "{E36FE0BB-E3CF-4D8A-990F-10DEC4308AD6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpecExplorer1", "SpecExplorer1\SpecExplorer1.csproj", "{140FE407-D547-4325-95C9-F055D11C533D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{463A1271-40C6-4BC2-8711-F15B82E89565}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{463A1271-40C6-4BC2-8711-F15B82E89565}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{463A1271-40C6-4BC2-8711-F15B82E89565}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{463A1271-40C6-4BC2-8711-F15B82E89565}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E36FE0BB-E3CF-4D8A-990F-10DEC4308AD6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E36FE0BB-E3CF-4D8A-990F-10DEC4308AD6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E36FE0BB-E3CF-4D8A-990F-10DEC4308AD6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E36FE0BB-E3CF-4D8A-990F-10DEC4308AD6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{140FE407-D547-4325-95C9-F055D11C533D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{140FE407-D547-4325-95C9-F055D11C533D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{140FE407-D547-4325-95C9-F055D11C533D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{140FE407-D547-4325-95C9-F055D11C533D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

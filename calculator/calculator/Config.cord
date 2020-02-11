@@ -1,0 +1,34 @@
+﻿// This is a Spec Explorer coordination script (Cord version 1.0).
+// Here is where you define configurations and machines describing the
+// exploration to be performed.
+
+using calculatorSample;
+
+/// Contains actions of the model, bounds, and switches.
+config Main 
+{
+    /// The two implementation actions that will be modeled and tested
+    action abstract static void Calculator.start_in_standard();
+    action abstract static void Calculator.close_from_standard();    
+    action abstract static void Calculator.navigate_to_scientific();
+    action abstract static void Calculator.navigate_to_programmer();
+
+    switch StepBound = 128;
+    switch PathDepthBound = 128;
+    switch TestClassBase = "vs";
+    switch GeneratedTestPath = "..\\calculator.TestSuite";
+    switch GeneratedTestNamespace = "calculator.TestSuite";
+    switch TestEnabled = false;
+    switch ForExploration = false;
+}
+
+
+machine MyModelProgram() : Main where ForExploration = true
+{
+    construct model program from Main
+}
+
+machine TestModelProgram() : Main where ForExploration = true, TestEnabled = true
+{
+    construct test cases for MyModelProgram    
+}

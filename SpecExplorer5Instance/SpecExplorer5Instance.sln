@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpecExplorer5Instance.TestSuite", "SpecExplorer5Instance.TestSuite\SpecExplorer5Instance.TestSuite.csproj", "{2CD5150F-FF19-447D-B0FA-AC888B20C9C6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpecExplorer5Instance.Sample", "SpecExplorer5Instance.Sample\SpecExplorer5Instance.Sample.csproj", "{D934646E-6FD9-4ED8-8E82-25DE3B3FACED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpecExplorer5Instance", "SpecExplorer5Instance\SpecExplorer5Instance.csproj", "{FDBEF554-C21E-4BAB-9840-983C00BBFB10}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2CD5150F-FF19-447D-B0FA-AC888B20C9C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2CD5150F-FF19-447D-B0FA-AC888B20C9C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2CD5150F-FF19-447D-B0FA-AC888B20C9C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2CD5150F-FF19-447D-B0FA-AC888B20C9C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D934646E-6FD9-4ED8-8E82-25DE3B3FACED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D934646E-6FD9-4ED8-8E82-25DE3B3FACED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D934646E-6FD9-4ED8-8E82-25DE3B3FACED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D934646E-6FD9-4ED8-8E82-25DE3B3FACED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FDBEF554-C21E-4BAB-9840-983C00BBFB10}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FDBEF554-C21E-4BAB-9840-983C00BBFB10}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FDBEF554-C21E-4BAB-9840-983C00BBFB10}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FDBEF554-C21E-4BAB-9840-983C00BBFB10}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(SpecExplorer.ActivityCompletionStatus) = preSolution
+		SpecExplorer.ActivityCompletionStatus = TestExisting: ;ModelFromScratch: 
+	EndGlobalSection
+EndGlobal

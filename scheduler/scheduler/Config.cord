@@ -1,0 +1,59 @@
+﻿// This is a Spec Explorer coordination script (Cord version 1.0).
+// Here is where you define configurations and machines describing the
+// exploration to be performed.
+
+using scheduler;
+
+/// Contains actions of the model, bounds, and switches.
+config Main 
+{
+    /// The two implementation actions that will be modeled and tested
+    action abstract static void Implementation.GetStack(scheduler.Bar b);
+    action abstract static void Implementation.Match(scheduler.Bar b);
+    //action abstract static void Implementation.GetStack();
+    action abstract static void Implementation.Init();
+    action abstract static void Implementation.Completed();
+    action abstract static void Implementation.Tick(int i);
+    action abstract static void Implemenation.GetProcessor(scheduler.Bar b);
+    //action abstract static void Implemenation.GetProcessor();
+    action abstract static void Implementation.StartExecute(scheduler.Bar b);
+    action abstract static void Implementation.Run(scheduler.Bar b);
+    
+    switch StepBound = 128;
+    switch PathDepthBound = 128;
+    switch TestClassBase = "vs";
+    switch GeneratedTestPath = "..\\scheduler.TestSuite";
+    switch GeneratedTestNamespace = "scheduler.TestSuite";
+    switch TestEnabled = false;
+    switch ForExploration = false;
+}
+
+machine schedulerFeatures() : Main where ForExploration = true
+{
+    construct model program from Main where Scope = "scheduler", Features = "Scheduler,TimeUpdate, Process, Resources"
+}
+
+machine schedulerAll() : Main where ForExploration = true
+{
+    construct model program from Main where Scope = "scheduler"
+}
+
+machine schedulerFeatureOnly() : Main where ForExploration = true
+{
+    construct model program from Main where Scope = "scheduler", Features = "Scheduler, TimeUpdate"
+}
+
+machine schedulerOnlyTests() : Main where ForExploration = true, TestEnabled = true
+{
+    construct test cases where Strategy = "LongTests" for schedulerFeatureOnly
+
+}
+
+
+
+
+
+
+
+
+

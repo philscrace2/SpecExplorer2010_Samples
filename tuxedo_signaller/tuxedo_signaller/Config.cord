@@ -1,0 +1,186 @@
+﻿// This is a Spec Explorer coordination script (Cord version 1.0).
+// Here is where you define configurations and machines describing the
+// exploration to be performed.
+
+using tuxedo_signaller.Sample;
+using tuxedo_signaller;
+using TuxedoTicker;
+using two_trains;
+using Microsoft.Modeling;
+
+/// Contains actions of the model, bounds, and switches.
+config Main 
+{
+    /// The two implementation actions that will be modeled and tested
+    action abstract static void implementation.move(int tickCounter, tuxedo_signaller.Train train);
+    action abstract static void implementation.new_train(tuxedo_signaller.Train train);
+    action abstract static void implementation.destination_reached(int tickCounter, tuxedo_signaller.Train train);
+    
+    switch StepBound = 128;
+    switch PathDepthBound = 128;
+    switch TestClassBase = "vs";
+    switch GeneratedTestPath = "..\\tuxedo_signaller.TestSuite";
+    switch GeneratedTestNamespace = "tuxedo_signaller.TestSuite";
+    switch TestEnabled = false;
+    switch ForExploration = false;
+}
+
+
+config OneTrain : Main
+{
+    action abstract static void implementation.new_train(tuxedo_signaller.Train train)
+    where
+    {.
+        Condition.In(train.train_Id, "TR1");
+        Condition.In(train.startBlock, "A");
+        Condition.In(train.destinationBlock, "E");
+        Condition.In(train.currentLocationBlock, "A");
+    .};
+
+    //action abstract static void implementation.move(int i, tuxedo_signaller.Train t)
+    //where
+    //{.
+                        //
+    //.};
+}
+
+/// Constructs a machine from the model program. 
+/// Since the model is not finite, this machine explodes
+/// and exploration is stopped by a bound.
+/// Switch ForExploration makes the machine appear in Exploration Manager.TickerOneTrainTrackModelProgram
+machine TickerOneTrainTrackModelProgram() : OneTrain where ForExploration = true
+{
+    construct model program from OneTrain where scope = "tuxedo_signaller"
+}
+
+/// Contains actions of the model, bounds, and switches.
+config TickerConfig 
+{
+   
+    action abstract static void implementation.move(int tickCounter);
+    action abstract static void implementation.new_train(TuxedoTicker.Train train);
+    action abstract static void implementation.destination_reached(int tickCounter, TuxedoTicker.Train train);
+    
+    switch StepBound = 128;
+    switch PathDepthBound = 128;
+    switch TestClassBase = "vs";
+    switch GeneratedTestPath = "..\\tuxedo_signaller.TestSuite";
+    switch GeneratedTestNamespace = "tuxedo_signaller.TestSuite";
+    switch TestEnabled = false;
+    switch ForExploration = false;
+}
+
+config TickerOneTrain : TickerConfig
+{
+    action abstract static void implementation.new_train(TuxedoTicker.Train train)
+    where
+    {.
+        Condition.In(train.train_Id, "TR1");
+        Condition.In(train.startBlock, "A");
+        Condition.In(train.destinationBlock, "E");
+        Condition.In(train.currentLocationBlock, "A");
+    .};
+
+    //action abstract static void implementation.move(int i, tuxedo_signaller.Train t)
+    //where
+    //{.
+                        //
+    //.};
+}
+
+machine TickerOnlyModelProgram() : TickerOneTrain where ForExploration = true
+{
+    construct model program from TickerOneTrain where scope = "TuxedoTicker"
+}
+
+machine TickerBasicTrackTests() : TickerOneTrain where ForExploration = true, TestEnabled = true
+{
+    construct test cases where Strategy = "LongTests" for TickerOnlyModelProgram
+}
+
+config TwoTrainsConfig 
+{
+    action abstract static void implementation.new_train(string train, string startBlock, string currentBlock, string destinationBlock);
+    action abstract static void implementation.move(int tickCounter, Microsoft.Modeling.Sequence<string> train, Microsoft.Modeling.Sequence<string> sb, Microsoft.Modeling.Sequence<string> cb, Microsoft.Modeling.Sequence<string> db);    
+    action abstract static void implementation.destination_reached(int tickCounter, string train);
+    
+    switch StepBound = 128;
+    switch PathDepthBound = 128;
+    switch TestClassBase = "vs";
+    switch GeneratedTestPath = "..\\tuxedo_signaller.TestSuite";
+    switch GeneratedTestNamespace = "tuxedo_signaller.TestSuite";
+    switch TestEnabled = false;
+    switch ForExploration = false;
+}
+
+config TwoTrains : TwoTrainsConfig
+{
+    //action abstract static void implementation.new_train(microsoft.modeling.SetContainer<string> train)
+    //where
+    //{.
+        //Condition.In(train.train_Id, "TR1");
+        //Condition.In(train.startBlock, "A");
+        //Condition.In(train.destinationBlock, "E");
+        //Condition.In(train.currentLocationBlock, "A");
+    //.};
+
+    //action abstract static void implementation.new_train(string train)
+    //where
+    //{.
+        //Condition.In(train, "TR1", "TR2");
+    //.};
+
+    //action abstract static void implementation.move(int i, tuxedo_signaller.Train t)
+    //where
+    //{.
+                        //
+    //.};
+}
+machine SingleTrainsModelProgram() : TwoTrainsConfig
+{
+    construct model program from TwoTrains where scope = "two_trains"
+}
+
+machine SingleTrain() : TwoTrainsConfig where ForExploration = true
+{
+    new_train("TR1", "A", "A", "E"); move(_,_,_,_,_)*; destination_reached(_,_);
+}
+
+machine SingleTrainsCombined() : TwoTrains where ForExploration = true
+{
+    {.
+        two_trains.tuxedoModelProgram.trainNumber = 1;
+        two_trains.tuxedoModelProgram.train_track = new SequenceContainer<string>() { "A", "B", "C", "D", "E" };
+    .} : SingleTrain || TwoTrainsModelProgram
+}
+
+
+machine TwoTrainsModelProgram() : TwoTrains where ForExploration = true
+{
+    construct model program from TwoTrains where scope = "two_trains"
+}
+
+machine TwoTrainsSetupTwice() : TwoTrains
+{
+    new_train("TR1", "A", "A", "E"); new_train("TR2", "E", "E", "C"); move(_,_,_,_,_)*; destination_reached(_,_);
+}
+
+machine TwoTrainsCombined() : TwoTrains where ForExploration = true
+{
+    {.
+        two_trains.tuxedoModelProgram.trainNumber = 2;
+        two_trains.tuxedoModelProgram.train_track = new SequenceContainer<string>() { "A", "B", "C", "D", "E" };
+    .} : TwoTrainsSetupTwice || TwoTrainsModelProgram
+}
+
+machine TwoTrainsCombinedSetup(): TwoTrains where ForExploration = true
+{
+    {.
+        two_trains.tuxedoModelProgram.trainNumber = 2;
+    .} : TwoTrainsCombined();
+}
+
+machine TwoTrainsTests() : TwoTrains where ForExploration = true, TestEnabled = true
+{
+    construct test cases where Strategy = "LongTests" for TwoTrainsModelProgram
+}

@@ -1,0 +1,35 @@
+﻿// This is a Spec Explorer coordination script (Cord version 1.0).
+// Here is where you define configurations and machines describing the
+// exploration to be performed.
+
+using StopWatch.Sample;
+
+/// Contains actions of the model, bounds, and switches.
+config Main 
+{
+
+    switch StepBound = 128;
+    switch PathDepthBound = 128;
+    switch TestClassBase = "vs";
+    switch GeneratedTestPath = "..\\StopWatch.TestSuite";
+    switch GeneratedTestNamespace = "StopWatch.TestSuite";
+    switch TestEnabled = false;  
+    
+    action static void Stopwatch.Initialize();
+    action static void Stopwatch.ModeButton();
+    action static void Stopwatch.StartStopButton();
+    action static void Stopwatch.ResetLapButton();
+    action static bool Stopwatch.IsTimerReset();
+    
+}
+
+machine MyModelProgram() : Main where ForExploration = true
+{
+    construct model program from Main
+}
+
+machine MyTestCase() :  Main where TestEnabled = true
+{
+    construct test cases for Initialize;MyModelProgram
+}
+

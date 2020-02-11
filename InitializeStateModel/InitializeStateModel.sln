@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InitializeStateModel.TestSuite", "InitializeStateModel.TestSuite\InitializeStateModel.TestSuite.csproj", "{CAD45D50-07E0-4955-B522-684E3A2B294B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InitializeStateModel.Sample", "InitializeStateModel.Sample\InitializeStateModel.Sample.csproj", "{9DE22FEC-5165-4F73-9EA6-F854A23C878C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InitializeStateModel", "InitializeStateModel\InitializeStateModel.csproj", "{AF8EFB80-E7BA-4E40-BC17-3BE6D6EA7507}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CAD45D50-07E0-4955-B522-684E3A2B294B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CAD45D50-07E0-4955-B522-684E3A2B294B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CAD45D50-07E0-4955-B522-684E3A2B294B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CAD45D50-07E0-4955-B522-684E3A2B294B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9DE22FEC-5165-4F73-9EA6-F854A23C878C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9DE22FEC-5165-4F73-9EA6-F854A23C878C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9DE22FEC-5165-4F73-9EA6-F854A23C878C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9DE22FEC-5165-4F73-9EA6-F854A23C878C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF8EFB80-E7BA-4E40-BC17-3BE6D6EA7507}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF8EFB80-E7BA-4E40-BC17-3BE6D6EA7507}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF8EFB80-E7BA-4E40-BC17-3BE6D6EA7507}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF8EFB80-E7BA-4E40-BC17-3BE6D6EA7507}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(SpecExplorer.ActivityCompletionStatus) = preSolution
+		SpecExplorer.ActivityCompletionStatus = TestExisting: ;ModelFromScratch: 
+	EndGlobalSection
+EndGlobal

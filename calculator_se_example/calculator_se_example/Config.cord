@@ -1,0 +1,62 @@
+﻿// This is a Spec Explorer coordination script (Cord version 1.0).
+// Here is where you define configurations and machines describing the
+// exploration to be performed.
+
+using calculator_se_example;
+using calculator_se_example.Sample;
+
+
+/// Contains actions of the model, bounds, and switches.
+config Main 
+{
+    /// The two implementation actions that will be modeled and tested
+    action abstract static void Implementation.SwitchRunning();
+    action abstract static void Implementation.SwitchMode();
+    
+
+    switch StepBound = 128;
+    switch PathDepthBound = 128;
+    switch TestClassBase = "vs";
+    switch GeneratedTestPath = "..\\calculator_se_example.TestSuite";
+    switch GeneratedTestNamespace = "calculator_se_example.TestSuite";
+    switch TestEnabled = false;
+    switch ForExploration = false;
+}
+
+config Main1 : Main
+{
+    action abstract static void Implementation.SwitchMode();
+}
+
+
+
+machine BasicCalculator() : Main where ForExploration = true
+{
+    construct model program from Main 
+        where scope = "calculator_se_example",
+              features = "RunningMode"
+}
+
+machine ScientificCalculator() : Main where ForExploration = true
+{
+    construct model program from Main 
+        where scope = "calculator_se_example",
+              features = "RunningMode, ScientificMode"
+}
+
+machine HelloCalculator() : Main where ForExploration = true
+{
+    construct model program from Main 
+        where scope = "calculator_se_example",
+              features = "RunningMode, ScientificMode, Programmer"
+}
+
+
+
+machine OperatorsAgain() : Main where ForExploration = true
+{
+    construct model program from Main where features="RunningMode,Programmer,ScientificMode"
+}
+
+
+

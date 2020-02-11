@@ -1,0 +1,303 @@
+﻿// This is a Spec Explorer coordination script (Cord version 1.0).
+// Here is where you define configurations and machines describing the
+// exploration to be performed.
+
+using windwaker_inc_exc_part2;
+using windwaker_include_exclude_activities.Sample;
+using windwaker_inc_out_of_scope;
+using Microsoft.Modeling;
+
+/// Contains actions of the model, bounds, and switches.
+config Main 
+{
+    /// The two implementation actions that will be modeled and tested
+    action abstract static void Implementation.include_activity(windwaker_include_exclude_activities.Activity activity);    
+    action abstract static void Implementation.select_activity(string s);
+    action abstract static void Implementation.change_document_selection(windwaker_include_exclude_activities.Activity act_name, windwaker_include_exclude_activities.Document docs);
+    action abstract static void Implementation.dialog_status(windwaker_include_exclude_activities.Activity act, windwaker_include_exclude_activities.Document doc);
+    //action abstract static void Implementation.change_document_selection(windwaker_include_exclude_activities.Document docs);
+    //action abstract static void Implementation.change_document_selection(windwaker_include_exclude_activities.Activity act_name);
+    switch StepBound = 128;
+    switch PathDepthBound = 128;
+    switch TestClassBase = "vs";
+    switch GeneratedTestPath = "..\\windwaker_include_exclude_activities.TestSuite";
+    switch GeneratedTestNamespace = "windwaker_include_exclude_activities.TestSuite";
+    switch TestEnabled = false;
+    switch ForExploration = false;
+}
+
+/// Contains actions of the model, bounds, and switches.
+config multiple_activity 
+{
+    /// The two implementation actions that will be modeled and tested
+    action abstract static void Implementation.login_success();
+    action abstract static void Implementation.create_new_plan();
+    action abstract static void Implementation.load_plan();
+    action abstract static void Implementation.edit_existing_plan();
+    action abstract static void Implementation.edit_existing_plan1();    
+    action abstract static void Implementation.include_activity(windwaker_inc_exc_part2.Activity activity);
+    action abstract static void Implementation.exclude_activity(windwaker_inc_exc_part2.Activity activity);    
+    action abstract static void Implementation.select_activity(windwaker_inc_exc_part2.Activity s);
+    action abstract static void Implementation.change_document_selection(windwaker_inc_exc_part2.Activity act_name, windwaker_inc_exc_part2.Document docs);
+    action abstract static void Implementation.dialog_status(windwaker_inc_exc_part2.Activity act, windwaker_inc_exc_part2.Document doc);
+    action abstract static void Implementation.close_flyout(windwaker_inc_exc_part2.Activity act);
+    action abstract static void Implementation.change_activity_selection(windwaker_inc_exc_part2.Activity act_name, windwaker_inc_exc_part2.activity_selection_status ass);
+    //action abstract static void Implementation.change_document_selection(windwaker_include_exclude_activities.Document docs);
+    //action abstract static void Implementation.change_document_selection(windwaker_include_exclude_activities.Activity act_name);
+    switch StepBound = 10280;
+    switch StateBound = 10280;
+    switch PathDepthBound = 10280;
+    switch TestClassBase = "vs";
+    switch GeneratedTestPath = "..\\windwaker_include_exclude_activities.TestSuite";
+    switch GeneratedTestNamespace = "windwaker_include_exclude_activities.TestSuite";
+    switch TestEnabled = false;
+    switch ForExploration = false;
+    //switch StopAtError = true;
+}
+
+/// Contains actions of the model, bounds, and switches.
+config checkbox_only_config 
+{
+    /// The two implementation actions that will be modeled and tested
+    action abstract static void Implementation.login_success();
+    action abstract static void Implementation.create_new_plan();
+    action abstract static void Implementation.load_plan();
+    action abstract static void Implementation.edit_existing_plan();
+    action abstract static void Implementation.edit_existing_plan1();    
+    action abstract static void Implementation.include_activity(windwaker_checkbox_only_iteration.Activity1 activity);
+    action abstract static void Implementation.exclude_activity(windwaker_checkbox_only_iteration.Activity1 activity);    
+    action abstract static void Implementation.select_activity(windwaker_checkbox_only_iteration.Activity1 s);
+    action abstract static void Implementation.change_document_selection(windwaker_checkbox_only_iteration.Activity1 act_name, windwaker_checkbox_only_iteration.Document docs);
+    action abstract static void Implementation.dialog_status(windwaker_checkbox_only_iteration.Activity1 act, windwaker_checkbox_only_iteration.Document doc);
+    action abstract static void Implementation.close_flyout(windwaker_checkbox_only_iteration.Activity1 act);
+    action abstract static void Implementation.change_activity_selection(windwaker_checkbox_only_iteration.Activity1 act_name,windwaker_checkbox_only_iteration.activity_selection_status ass);
+    //windwaker_checkbox_only_iteration.Activity1 act_name, string ass
+    //action abstract static void Implementation.change_document_selection(windwaker_include_exclude_activities.Document docs);
+    //action abstract static void Implementation.change_document_selection(windwaker_include_exclude_activities.Activity act_name);
+    switch StepBound = 10280;
+    switch StateBound = 10280;
+    switch PathDepthBound = 10280;
+    switch TestClassBase = "vs";
+    switch GeneratedTestPath = "..\\windwaker_include_exclude_activities.TestSuite";
+    switch GeneratedTestNamespace = "windwaker_include_exclude_activities.TestSuite";
+    switch TestEnabled = false;
+    switch ForExploration = false;
+    //switch StopAtError = true;
+}
+
+/// Contains actions of the model, bounds, and switches.
+config inc_exc_out_of_scope 
+{
+    /// The two implementation actions that will be modeled and tested
+    action abstract static void Implementation.edit_existing_plan(windwaker_inc_out_of_scope.Activity act);
+    action abstract static void Implementation.plan_loaded(windwaker_inc_out_of_scope.Activity act, int count);
+    action abstract static void Implementation.include_activity(windwaker_inc_out_of_scope.Activity activity);
+    action abstract static void Implementation.exclude_activity(windwaker_inc_out_of_scope.Activity activity);    
+    action abstract static void Implementation.select_activity(windwaker_inc_out_of_scope.Activity s);
+    action abstract static void Implementation.change_document_selection(windwaker_inc_out_of_scope.Activity act_name, windwaker_inc_out_of_scope.Document docs);
+    action abstract static void Implementation.dialog_status(windwaker_inc_out_of_scope.Activity act, windwaker_inc_out_of_scope.Document doc);
+    action abstract static void Implementation.close_flyout();
+    action abstract static void Implementation.change_activity_selection(windwaker_inc_out_of_scope.Activity act_name, windwaker_inc_out_of_scope.activity_selection_status ass);
+    //action abstract static void Implementation.change_document_selection(windwaker_include_exclude_activities.Document docs);
+    //action abstract static void Implementation.change_document_selection(windwaker_include_exclude_activities.Activity act_name);
+    switch StepBound = 10280;
+    switch StateBound = 10280;
+    switch PathDepthBound = 1280;
+    switch TestClassBase = "vs";
+    switch GeneratedTestPath = "..\\windwaker_include_exclude_activities.TestSuite";
+    switch GeneratedTestNamespace = "windwaker_include_exclude_activities.TestSuite";
+    switch TestEnabled = false;
+    switch ForExploration = false;
+    switch StopAtError = true;
+}
+
+config Second : Main
+{
+    action abstract static void Implementation.include_activity(windwaker_include_exclude_activities.Activity activity)
+    where
+    {.
+        Condition.In(activity.name, "Activity1");
+        Condition.In(activity.isMandatory, true);
+    
+    .};
+
+}
+
+config multiple_config : multiple_activity
+{  
+    action abstract static void Implementation.edit_existing_plan()
+    where
+    {.         
+        Parameters.max_number_of_selection_changes = 2;
+        Parameters.login_success = true;
+        Parameters.file_directory_status = false;
+        Parameters.acts = new SetContainer<windwaker_inc_exc_part2.Activity>(){new windwaker_inc_exc_part2.Activity("Activity1", windwaker_inc_exc_part2.activity_selection_status.no_selection, true)};
+    .}; 
+
+}
+
+config all_features_multiple_config : multiple_activity
+{  
+    action abstract static void Implementation.edit_existing_plan()
+    where
+    {.         
+        Parameters.max_number_of_selection_changes = 2;        
+        Parameters.acts = new SetContainer<windwaker_inc_exc_part2.Activity>(){new windwaker_inc_exc_part2.Activity("Activity1", windwaker_inc_exc_part2.activity_selection_status.no_selection, true)};
+    .}; 
+
+}
+
+config multiple_config_two_acts : multiple_activity
+{  
+    action abstract static void Implementation.edit_existing_plan()
+    where
+    {.         
+        Parameters.max_number_of_selection_changes = 1;
+        Parameters.acts = new SetContainer<windwaker_inc_exc_part2.Activity>()
+        {new windwaker_inc_exc_part2.Activity("Activity1", windwaker_inc_exc_part2.activity_selection_status.no_selection, true),
+         new windwaker_inc_exc_part2.Activity("Activity2", windwaker_inc_exc_part2.activity_selection_status.no_selection, false)};
+    .}; 
+
+}
+
+config checkbox_only : checkbox_only_config
+{
+    action abstract static void Implementation.edit_existing_plan()
+    where
+    {.     
+        windwaker_checkbox_only_iteration.checkbox_only.activity_selection_status_set  = new SetContainer<string>(){"no_selection","included"};
+        windwaker_checkbox_only_iteration.Parameters.max_number_of_selection_changes = 2; 
+        windwaker_checkbox_only_iteration.Parameters.login_success = true;
+        windwaker_checkbox_only_iteration.Parameters.file_directory_status = false;       
+        windwaker_checkbox_only_iteration.Parameters.acts = new SetContainer<windwaker_checkbox_only_iteration.Activity1>(){new windwaker_checkbox_only_iteration.Activity1("Activity1", windwaker_checkbox_only_iteration.activity_selection_status.no_selection, true)};
+    .};
+}
+
+machine documents_machine() : Second where ForExploration = true
+{
+    construct model program from Second where Scope = "windwaker_include_exclude_activities"
+}
+
+machine documents_long_tests() : Second where ForExploration = true, TestEnabled = true
+{
+    construct test cases where Strategy = "LongTests" for documents_machine
+}
+
+machine documents_short_tests() : Second where ForExploration = true, TestEnabled = true
+{
+    construct test cases where Strategy = "ShortTests" for documents_machine
+}
+
+machine multiple_model() : multiple_config where ForExploration = true
+{
+    construct model program from multiple_config where Scope = "windwaker_inc_exc_part2", Features = "IncludeExclude"
+}
+
+machine multiple_model_short_tests() : multiple_config where ForExploration = true, TestEnabled = true
+{
+    construct test cases where Strategy = "ShortTests" for multiple_model
+}
+
+machine multiple_model_long_tests() : multiple_config where ForExploration = true, TestEnabled = true
+{
+    construct test cases where Strategy = "LongTests" for multiple_model
+}
+
+machine all_features_multiple_config_model() : multiple_config where ForExploration = true
+{
+    construct model program from multiple_config where Scope = "windwaker_inc_exc_part2"
+}
+
+machine all_features_multiple_config_tests() : multiple_config where ForExploration = true, TestEnabled = true
+{
+    construct test cases where Strategy = "ShortTests" for all_features_multiple_config_model
+}
+
+machine login_create_include_exclude() : all_features_multiple_config where ForExploration = true
+{
+    construct model program from all_features_multiple_config where Scope = "windwaker_inc_exc_part2", Features = "Login, CreateOrEdit, IncludeExclude" 
+}
+
+machine login_create_include_exclude_tests() : all_features_multiple_config where ForExploration = true, TestEnabled = true
+{
+    construct test cases where Strategy = "ShortTests" for login_create_include_exclude
+}
+
+machine multiple_model_two() : multiple_config_two_acts where ForExploration = true
+{
+    construct model program from multiple_config_two_acts where Scope = "windwaker_inc_exc_part2"
+}
+
+machine multiple_model_two_tests() : multiple_config_two_acts where ForExploration = true, TestEnabled = true
+{
+    construct test cases where Strategy = "ShortTests" for multiple_model_two
+}
+
+machine checkbox_only_model() : checkbox_only where ForExploration = true
+{    
+    construct model program from checkbox_only where Scope = "windwaker_checkbox_only_iteration", Features = "IncludeExclude"
+}
+
+machine checkbox_only_model_tests() : checkbox_only where ForExploration = true, TestEnabled = true
+{
+    construct test cases where Strategy = "ShortTests" for checkbox_only_model
+}
+//machine part2_scenario_model() : Main_part2 where ForExploration = true
+//{
+   //(edit_existing_plan();)
+//}
+//
+//machine part2_sliced_model() : Main_part2 where ForExploration = true
+//{
+   //part2_scenario_model() | part2_model()
+//}
+//
+//machine part2_sliced_model_tests() : part2 where ForExploration = true, TestEnabled = true
+//{
+    //construct test cases where Strategy = "ShortTests" for part2_sliced_model
+//}
+
+
+
+config close_flyout_config : inc_exc_out_of_scope
+{  
+    action abstract static void Implementation.edit_existing_plan(windwaker_inc_out_of_scope.Activity activity, int count)
+    where
+    {.
+        Condition.In(activity.name, "Activity1");
+        Condition.In(activity.status, windwaker_inc_out_of_scope.activity_selection_status.no_selection);
+        Condition.In(activity.isMandatory, true);
+        Condition.In(count, 1);
+    
+    .};
+    
+
+    //action abstract static void Implementation.change_activity_selection(windwaker_inc_exc_part2.Activity activity, windwaker_inc_exc_part2.activity_selection_status ass)
+    //where
+    //{.
+        //Condition.In(activity.name, "Activity1");
+        //Condition.In(ass, windwaker_inc_exc_part2.activity_selection_status.no_selection);
+    //
+    //.};
+
+    //no_selection = 0,
+        //out_of_scope = 1,
+        //include = 2,
+        //exclude = 3
+
+}
+
+machine close_flyout_accepting_model() : close_flyout_config where ForExploration = true
+{
+    construct model program from close_flyout_config where Scope = "windwaker_inc_out_of_scope"
+}
+
+machine close_flyout_accepting_model_tests() : close_flyout_config where ForExploration = true, TestEnabled = true
+{
+    construct test cases where Strategy = "LongTests" for close_flyout_accepting_model
+}
+
+machine close_flyout_accepting_model_short_tests() : close_flyout_config where ForExploration = true, TestEnabled = true
+{
+    construct test cases where Strategy = "ShortTests" for close_flyout_accepting_model
+}

@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lightswitch.TestSuite", "lightswitch.TestSuite\lightswitch.TestSuite.csproj", "{9FD64D80-1EC0-4E47-BE09-C8021BE01284}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lightswitch.Sample", "lightswitch.Sample\lightswitch.Sample.csproj", "{E194602A-2576-4E72-9577-1E49887785C5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lightswitch", "lightswitch\lightswitch.csproj", "{3B45C59C-8AF8-4172-8194-AC8EF3E9386C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9FD64D80-1EC0-4E47-BE09-C8021BE01284}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9FD64D80-1EC0-4E47-BE09-C8021BE01284}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9FD64D80-1EC0-4E47-BE09-C8021BE01284}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9FD64D80-1EC0-4E47-BE09-C8021BE01284}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E194602A-2576-4E72-9577-1E49887785C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E194602A-2576-4E72-9577-1E49887785C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E194602A-2576-4E72-9577-1E49887785C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E194602A-2576-4E72-9577-1E49887785C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B45C59C-8AF8-4172-8194-AC8EF3E9386C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B45C59C-8AF8-4172-8194-AC8EF3E9386C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B45C59C-8AF8-4172-8194-AC8EF3E9386C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B45C59C-8AF8-4172-8194-AC8EF3E9386C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

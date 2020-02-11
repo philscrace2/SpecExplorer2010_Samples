@@ -1,0 +1,55 @@
+﻿// This is a Spec Explorer coordination script (Cord version 1.0).
+// Here you define configurations and machines describing the
+// exploration task you want to perform.
+
+using SpecExplorer5Instance.Sample; 
+
+/// Contains actions of the model, bounds, and switches.
+config Main 
+{
+    /// Thread constructor action
+    action ComplexThread();
+    
+    /// Request a thread to perform a step.
+    action void ComplexThread.Step();
+
+    switch StepBound = 128;
+    switch PathDepthBound = 128;
+    switch TestClassBase = "vs";
+    switch GeneratedTestPath = "..\\SpecExplorer5Instance.TestSuite";
+    switch GeneratedTestNamespace = "SpecExplorer5Instance.ThreadTestSuite";
+    switch TestEnabled = false;
+}
+
+/// Constructs a machine from the model program. 
+/// Since the model is not finite, this machine explodes
+/// and exploration is stopped by a bound.
+machine ThreadModelProgram() : Main
+{
+    construct model program from Main 
+    where scope = "SpecExplorer5Instance"
+}
+
+/// Defines a scenario for slicing (create two threads and let them step in any order).
+machine TwoThreadScenario() : Main
+{
+    new ComplexThread; new ComplexThread; _.Step*
+}
+
+/// Builds the slice of the scenario in the model program.
+machine SlicedThreadModelProgram() : Main
+{
+    TwoThreadScenario || ThreadModelProgram
+}
+
+/// Builds a machine which represents the link coverage traversal
+/// of the sliced model program. This can be tested "online" by
+/// selecting "Test". It can be also explorer, and then saved as a
+/// C# test suite (by selecting the C# button in the exploration window)
+/// which runs in a VSTS unit test project.
+machine ThreadTestSuite() : Main where TestEnabled = true
+{
+    construct test cases where strategy = "longtests" for SlicedThreadModelProgram()
+}
+
+

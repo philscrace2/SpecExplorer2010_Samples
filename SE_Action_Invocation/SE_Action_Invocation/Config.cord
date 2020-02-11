@@ -1,0 +1,37 @@
+﻿// This is a Spec Explorer coordination script (Cord version 1.0).
+// Here is where you define configurations and machines describing the
+// exploration to be performed.
+
+using SE_Action_Invocation.Sample;
+using SE_Action_Invocation;
+using Microsoft.Modeling;
+
+/// Contains actions of the model, bounds, and switches.
+config Main 
+{
+    /// The two implementation actions that will be modeled and tested
+    action abstract static int Implementation.GetQualifiedMinimum(Set<int> numbers);    
+
+    switch StepBound = 128;
+    switch PathDepthBound = 128;
+    switch TestClassBase = "vs";
+    switch GeneratedTestPath = "..\\SE_Action_Invocation.TestSuite";
+    switch GeneratedTestNamespace = "SE_Action_Invocation.TestSuite";
+    switch TestEnabled = false;
+    switch ForExploration = false;
+}
+
+config Domain : Main
+{
+    action abstract static int Implementation.GetQualifiedMinimum(Set<int> numbers)
+    where
+    {.
+        Set<int> bag = new Set<int>(0, 1, 2, 3);
+        Condition.In(numbers, bag);
+    .};
+}
+
+machine MinimumMachine() : Domain where ForExploration = true
+{
+    construct model program from Domain
+}

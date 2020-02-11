@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "scheduler_II.TestSuite", "scheduler_II.TestSuite\scheduler_II.TestSuite.csproj", "{F092C7E4-EAEF-47D7-971E-16CF5FC6383A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "scheduler_II.Sample", "scheduler_II.Sample\scheduler_II.Sample.csproj", "{95880B5D-71E8-4AD9-9380-909561AD0A8A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "scheduler_II", "scheduler_II\scheduler_II.csproj", "{D5FE2DE4-BFD6-4EB8-9A33-CADEF6AE70FF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F092C7E4-EAEF-47D7-971E-16CF5FC6383A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F092C7E4-EAEF-47D7-971E-16CF5FC6383A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F092C7E4-EAEF-47D7-971E-16CF5FC6383A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F092C7E4-EAEF-47D7-971E-16CF5FC6383A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95880B5D-71E8-4AD9-9380-909561AD0A8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95880B5D-71E8-4AD9-9380-909561AD0A8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95880B5D-71E8-4AD9-9380-909561AD0A8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95880B5D-71E8-4AD9-9380-909561AD0A8A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D5FE2DE4-BFD6-4EB8-9A33-CADEF6AE70FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5FE2DE4-BFD6-4EB8-9A33-CADEF6AE70FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5FE2DE4-BFD6-4EB8-9A33-CADEF6AE70FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5FE2DE4-BFD6-4EB8-9A33-CADEF6AE70FF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(SpecExplorer.ActivityCompletionStatus) = preSolution
+		SpecExplorer.ActivityCompletionStatus = TestExisting: ;ModelFromScratch: 
+	EndGlobalSection
+EndGlobal

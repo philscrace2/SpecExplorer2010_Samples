@@ -1,0 +1,109 @@
+﻿// This is a Spec Explorer coordination script (Cord version 1.0).
+// Here is where you define configurations and machines describing the
+// exploration to be performed.
+
+using RevisionControlSample;
+using RevisionControl;
+using Microsoft.Modeling;
+
+/// Contains actions of the model, bounds, and switches.
+config Main 
+{
+    action abstract static void RevisionControlSample.Checkout(string user);
+    action abstract static void RevisionControlSample.Resolve(string user, string file);
+    action abstract static void RevisionControlSample.Edit(string user, string file, Op op);
+    action abstract static void RevisionControlSample.Commit(string user);
+    action abstract static void RevisionControlSample.MustResolve(string user, Set<string> files);
+    action abstract static void RevisionControlSample.CommitComplete(string user, int newVersion);
+    action abstract static void RevisionControlSample.Revert(string user, string file);     
+    
+    switch StepBound = 20000;
+    switch StateBound = 20000;
+    switch StepsPerStateBound = 1096;
+    switch PathDepthBound = 20000;
+    switch TestClassBase = "vs";
+    switch GeneratedTestPath = "..\\RevisionControl.TestSuite";
+    switch GeneratedTestNamespace = "RevisionControl.TestSuite";
+    switch TestEnabled = false;
+    switch ForExploration = false;
+    //switch StopAtError = true;
+}
+
+//config Secondary : Main
+//{
+    //action abstract static void RevisionControlSample.Checkout(string user)
+    //where
+  //{.
+    //Condition.In(user, "bob", "alice");    
+  //.}; 
+//
+  ////action abstract static void RevisionControlSample.Edit(string user, string file, Op op)
+    ////where
+  ////{.
+    ////Condition.In(file, "file1");    
+  ////.};  
+//
+  ////action abstract static void RevisionControlSample.Commit(string user, string file, Op op)
+    ////where
+  ////{.
+    ////Condition.In(file, "file1");    
+  ////.};
+  //
+  ////action abstract static void RevisionControlSample.CommitComplete(string user, int newRevision)
+    ////where
+  ////{.
+    ////Condition.In(newRevision, 0, 1, 2, 3, 4);    
+  ////.};  
+//
+//}
+
+machine MyModelProgram() : Main where ForExploration = true
+{
+    construct model program from Main where Features= "Scenario1, Scenario1a"
+}
+
+machine TestSuite() : Main where ForExploration = true, TestEnabled = true
+{
+     construct test cases where Strategy = "LongTests" for MyModelProgram
+}
+
+//machine SecondModelProgram() : Main where ForExploration = true
+//{
+     //construct model program from Main 
+        //where features = "Scenario1"
+//}
+//
+//machine TestSuite2() : Secondary where ForExploration = true, TestEnabled = true
+//{
+     //construct test cases where strategy = "LongTests" for MyModelProgram
+//}
+//
+//machine CleanupCallsMachine() : Secondary where ForExploration = true
+//{
+    //construct accepting paths where NonDeterministicPathRemoval = "RemoveFullPath" for MyModelProgram
+//}
+//
+//machine CleanupCallsMachine2() : Secondary where ForExploration = true
+//{
+    //construct accepting paths where NonDeterministicPathRemoval = "RemoveNonAcceptingChoices" for MyModelProgram
+//}
+//
+//machine CleanUpTests() : Secondary where ForExploration = true, TestEnabled = true
+//{
+    //construct test cases where Strategy = "LongTests" for CleanupCallsMachine
+//}
+//
+//machine CleanUpTests2() : Secondary where ForExploration = true, TestEnabled = true
+//{
+    //construct test cases where Strategy = "LongTests" for CleanupCallsMachine2
+//}
+//
+//machine FeatureCompositionRL() : Main where ForExploration = true
+//{
+    //SecondModelProgram || MyModelProgram()
+//}
+//
+//machine FeatureCompositionLR() : Main where ForExploration = true
+//{
+    //MyModelProgram() ||| SecondModelProgram()
+//} 

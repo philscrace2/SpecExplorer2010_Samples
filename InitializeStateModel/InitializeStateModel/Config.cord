@@ -1,0 +1,38 @@
+﻿// This is a Spec Explorer coordination script (Cord version 1.0).
+// Here is where you define configurations and machines describing the
+// exploration to be performed.
+
+using InitializeStateModel.Sample;
+using InitializeStateModel;
+
+/// Contains actions of the model, bounds, and switches.
+config Main 
+{
+    /// The two implementation actions that will be modeled and tested
+    action abstract static void implementation.FirstStep(int v);
+    action abstract static void implementation.SecondStep();
+
+    switch StepBound = 128;
+    switch PathDepthBound = 128;
+    switch TestClassBase = "vs";
+    switch GeneratedTestPath = "..\\InitializeStateModel.TestSuite";
+    switch GeneratedTestNamespace = "InitializeStateModel.TestSuite";
+    switch TestEnabled = false;
+    switch ForExploration = false;
+}
+
+
+machine NewMachine() : Main where ForExploration = true
+{
+    construct model program from Main where scope= "InitializeStateModel"
+}
+
+machine SecondMachine() : Main where ForExploration = true
+{
+    {. ModelProgram.setThis = 2; .} : NewMachine();
+}
+
+//machine ThirdMachine() : Main where ForExploration = true
+//{
+    //{. ModelProgram.setThis = 2; .} : bind model program from Main where scope= "InitializeStateModel"
+//}

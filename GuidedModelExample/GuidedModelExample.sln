@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GuidedModelExample.TestSuite", "GuidedModelExample.TestSuite\GuidedModelExample.TestSuite.csproj", "{486112AD-6553-4D2A-8B39-B7415C6EDEDC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GuidedModelExample", "GuidedModelExample\GuidedModelExample.csproj", "{F181494E-08C9-4496-8416-386A8E35E09B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GuidedModelExample.Sample", "GuidedModelExample.Sample\GuidedModelExample.Sample.csproj", "{B74CAE8F-02AC-4902-9C0A-28F66EB9C51E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{486112AD-6553-4D2A-8B39-B7415C6EDEDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{486112AD-6553-4D2A-8B39-B7415C6EDEDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{486112AD-6553-4D2A-8B39-B7415C6EDEDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{486112AD-6553-4D2A-8B39-B7415C6EDEDC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F181494E-08C9-4496-8416-386A8E35E09B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F181494E-08C9-4496-8416-386A8E35E09B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F181494E-08C9-4496-8416-386A8E35E09B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F181494E-08C9-4496-8416-386A8E35E09B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B74CAE8F-02AC-4902-9C0A-28F66EB9C51E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B74CAE8F-02AC-4902-9C0A-28F66EB9C51E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B74CAE8F-02AC-4902-9C0A-28F66EB9C51E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B74CAE8F-02AC-4902-9C0A-28F66EB9C51E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(SpecExplorer.ActivityCompletionStatus) = preSolution
+		SpecExplorer.ActivityCompletionStatus = TestExisting: ;ModelFromScratch: DeclareActions
+	EndGlobalSection
+EndGlobal

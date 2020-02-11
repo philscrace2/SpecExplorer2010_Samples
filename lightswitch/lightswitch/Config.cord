@@ -1,0 +1,30 @@
+﻿// This is a Spec Explorer coordination script (Cord version 1.0).
+// Here is where you define configurations and machines describing the
+// exploration to be performed.
+
+using lightswitch.Sample;
+using lightswitch;
+
+/// Contains actions of the model, bounds, and switches.
+config Main 
+{    
+    action abstract static void Implementation.SwitchDown();
+    action abstract static void Implementation.SwitchUp();    
+
+    switch StepBound = 128;
+    switch PathDepthBound = 128;
+    switch TestClassBase = "vs";
+    switch GeneratedTestPath = "..\\lightswitch.TestSuite";
+    switch GeneratedTestNamespace = "lightswitch.TestSuite";
+    switch TestEnabled = false;
+    switch ForExploration = false;
+}
+
+
+machine BasicMachine() : Main where ForExploration = true 
+{
+    construct model program from Main where Scope="lightswitch"
+}
+
+
+

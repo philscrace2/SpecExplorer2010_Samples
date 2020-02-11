@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpecExplorer3.TestSuite", "SpecExplorer3.TestSuite\SpecExplorer3.TestSuite.csproj", "{79626E4A-E99C-43BB-AE36-CD33889E1FED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpecExplorer3", "SpecExplorer3\SpecExplorer3.csproj", "{A492BE0A-6131-448A-9D15-2A139D13B70F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{79626E4A-E99C-43BB-AE36-CD33889E1FED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79626E4A-E99C-43BB-AE36-CD33889E1FED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79626E4A-E99C-43BB-AE36-CD33889E1FED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79626E4A-E99C-43BB-AE36-CD33889E1FED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A492BE0A-6131-448A-9D15-2A139D13B70F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A492BE0A-6131-448A-9D15-2A139D13B70F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A492BE0A-6131-448A-9D15-2A139D13B70F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A492BE0A-6131-448A-9D15-2A139D13B70F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(SpecExplorer.ActivityCompletionStatus) = preSolution
+		SpecExplorer.ActivityCompletionStatus = TestExisting: ;ModelFromScratch: 
+	EndGlobalSection
+EndGlobal

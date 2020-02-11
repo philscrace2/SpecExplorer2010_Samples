@@ -1,0 +1,44 @@
+﻿// This is a Spec Explorer coordination script (Cord version 1.0).
+// Here is where you define configurations and machines describing the
+// exploration to be performed.
+
+using scheduler_II.Sample;
+using scheduler_II;
+
+/// Contains actions of the model, bounds, and switches.
+config Main 
+{
+    /// The two implementation actions that will be modeled and tested
+    action abstract static void Implementation.Init();
+    action abstract static void Implementation.Match(scheduler_II.Bar b);
+    action abstract static void Implementation.StartExecute(scheduler_II.Bar b);
+    action abstract static void Implementation.Completed();
+    action abstract static void Implementation.CompletedProcess();
+    action abstract static void Implementation.Tick(int i);
+    action abstract static void Implementation.GetStack(scheduler_II.Bar b);
+    action abstract static void Implementation.GetProcessor(scheduler_II.Bar b);
+    action abstract static void Implementation.Run(scheduler_II.Bar b);
+
+
+    switch StepBound = 128;
+    switch PathDepthBound = 128;
+    switch TestClassBase = "vs";
+    switch GeneratedTestPath = "..\\scheduler_II.TestSuite";
+    switch GeneratedTestNamespace = "scheduler_II.TestSuite";
+    switch TestEnabled = false;
+    switch ForExploration = false;
+    switch StopAtError = true;
+}
+
+machine FeaturesMachine() : Main where ForExploration = true
+{
+    construct model program from Main where Scope = "scheduler_II"
+}
+
+machine FeaturesMachineTests() : Main where ForExploration = true, TestEnabled = true
+{
+    construct test cases for FeaturesMachine
+}
+
+
+

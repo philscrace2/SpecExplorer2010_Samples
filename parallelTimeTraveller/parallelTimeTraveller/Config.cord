@@ -1,0 +1,190 @@
+﻿// This is a Spec Explorer coordination script (Cord version 1.0).
+// Here is where you define configurations and machines describing the
+// exploration to be performed.
+
+using parallelTimeTraveller.Sample;
+using parallelTimeTraveller;
+
+config Main4
+{ 
+    action abstract static void Implementation.start(string commuter, string origin, string destination, int initialOffset);
+    action abstract static int Implementation.travel_depart(string clock, parallelTimeTraveller.Commuter commuter, string station);
+
+    //, MapContainer<int, Map<string, string>> commuter
+    action abstract static int Implementation.travel_arrive(string clock, parallelTimeTraveller.Commuter commuter, string station);
+    action abstract static void Implementation.journey_end(string clock, string completedCommuter);
+    action abstract static void Implementation.finish(string clock, parallelTimeTraveller.Commuter commuter);    
+
+    switch StepBound = 10940;
+    switch PathDepthBound = 10940;
+    switch StateBound = 4000;
+    switch TestClassBase = "vs";
+    switch GeneratedTestPath = "..\\SpecExplorer1.TestSuite";
+    switch GeneratedTestNamespace = "SpecExplorer1.TestSuite";
+    switch TestEnabled = false;
+    switch ForExploration = false;   
+}
+
+config BigStateBound
+{ 
+    action abstract static void Implementation.start(string commuter, string origin, string destination, int initialOffset);
+    action abstract static int Implementation.travel_depart(string clock, parallelTimeTraveller.Commuter commuter, string station);
+
+    //, MapContainer<int, Map<string, string>> commuter
+    action abstract static int Implementation.travel_arrive(string clock, parallelTimeTraveller.Commuter commuter, string station);
+    action abstract static void Implementation.journey_end(string clock, string completedCommuter);
+    action abstract static void Implementation.finish(string clock, parallelTimeTraveller.Commuter commuter);    
+
+    switch StepBound = 10940;
+    switch PathDepthBound = 32;
+    switch StateBound = 8000;
+    switch TestClassBase = "vs";
+    switch GeneratedTestPath = "..\\SpecExplorer1.TestSuite";
+    switch GeneratedTestNamespace = "SpecExplorer1.TestSuite";
+    switch TestEnabled = false;
+    switch ForExploration = false;
+    switch StepsPerStateBound = 5;
+    switch StopAtError = true;
+}
+
+config Lavis2Seganti : Main4
+{
+    action abstract static void Implementation.start(parallelTimeTraveller.Commuter commuter, string start_time)
+    where
+    {.
+        Condition.In(commuter.name, "alice");        
+        Condition.In(commuter.origin, "Lavis");
+        Condition.In(commuter.destination, "Segantini Dogana");
+        Condition.In(commuter.initialOffset, 1);
+        Condition.In(start_time, "15:05:00");                
+    .};
+    
+}
+
+machine Lavis2SegantiClock() : Lavis2Seganti where ForExploration = true
+{
+    construct model program from Lavis2Seganti where Scope  = "parallelTimeTraveller.ModelProgram"   
+
+}
+
+config TrentoToSeganti : Main4
+{
+    action abstract static void Implementation.start(parallelTimeTraveller.Commuter commuter, string start_time)
+    where
+    {.
+        Condition.In(commuter.name, "bob");        
+        Condition.In(commuter.origin, "Trento");
+        Condition.In(commuter.destination, "Segantini Dogana");
+        Condition.In(commuter.initialOffset, 1);
+        Condition.In(start_time, "15:05:00");                
+    .};
+    
+}
+
+machine TrentoToSegantiClock() : TrentoToSeganti where ForExploration = true
+{
+    construct model program from TrentoToSeganti where Scope  = "parallelTimeTraveller.ModelProgram"   
+
+}
+
+
+config AandBLavisToTrento : Main4
+{ 
+    action abstract static void Implementation.start(parallelTimeTraveller.Commuter commuter, string start_time)
+    where
+    {.  
+        Condition.In(commuter.name, "alice", "bob");              
+        Condition.In(commuter.origin, "Lavis", "Lavis");
+        Condition.In(commuter.destination, "Trento", "Trento");
+        Condition.In(commuter.initialOffset, 1, 1);     
+        Condition.In(start_time, "15:00:00");
+    .};
+}
+
+machine AandBLavisToTrentoClock() : AandBLavisToTrento where ForExploration = true
+{
+    construct model program from AandBLavisToTrento where Scope  = "parallelTimeTraveller.ModelProgram"   
+
+}
+
+machine AandBLavisToTrentoClockTest() : AandBLavisToTrento where ForExploration = true, TestEnabled = true
+{
+    construct test cases where Strategy = "LongTests" for AandBLavisToTrentoClock
+}
+
+config AandBLavisToTrentoTrentoToSegantini : BigStateBound
+{ 
+    action abstract static void Implementation.start(parallelTimeTraveller.Commuter commuter, string start_time)
+    where
+    {.  
+        Condition.In(commuter.name, "alice", "bob");              
+        Condition.In(commuter.origin, "Lavis", "Trento");
+        Condition.In(commuter.destination, "Trento", "Segantini Dogana");
+        Condition.In(commuter.initialOffset, 1, 1);     
+        Condition.In(start_time, "15:00:00");
+        Condition.IsTrue(commuter.name == "alice" & commuter.origin == "Lavis" & commuter.destination == "Trento" || commuter.name == "bob" & commuter.origin == "Trento" & commuter.destination == "Segantini Dogana");             
+    .};
+}
+
+machine AandBLavisToTrentoTrentoToSegantiniClock() : AandBLavisToTrentoTrentoToSegantini where ForExploration = true
+{
+    construct model program from AandBLavisToTrentoTrentoToSegantini where Scope  = "parallelTimeTraveller.ModelProgram"   
+
+}
+
+machine AandBLavisToTrentoTrentoToSegantiniClockTest() : AandBLavisToTrentoTrentoToSegantini where ForExploration = true, TestEnabled = true
+{
+    construct test cases where Strategy = "LongTests" for AandBLavisToTrentoTrentoToSegantiniClock
+}
+
+//config Schedule3Commuter : Main4
+//{
+    //action abstract static void Implementation.start(string commuter, string origin, string destination, int initialOffset, string start_time)
+    //where
+    //{.
+        //Condition.In(commuter, "alice", "bob", "carol");        
+        //Condition.In(origin, "Lavis", "Lavis", "Lavis");
+        //Condition.In(destination, "Trento", "Trento", "Trento");
+        //Condition.In(initialOffset, 1, 1, 1);
+        //Condition.In(start_time, "15:05:00");               
+    //.};
+    //
+//}
+//
+//machine Schedule3CommuterClock() : Schedule3Commuter where ForExploration = true
+//{
+    //construct model program from Schedule3Commuter where Scope  = "parallelTimeTraveller.ModelProgram"   
+//
+//}
+//
+//machine Schedule3CommuterClockTest() : Schedule3Commuter where ForExploration = true, TestEnabled = true
+//{
+    //construct test cases where Strategy = "LongTests" for Schedule3CommuterClock
+//}
+//
+//
+//config Schedule2RoutesCommuter : Main4
+//{
+    //action abstract static void Implementation.start(string commuter, string origin, string destination, int initialOffset, string start_time)
+    //where
+    //{.
+        //Condition.In(commuter, "alice", "bob");        
+        //Condition.In(origin, "Lavis", "Lavis");
+        //Condition.In(destination, "Trento", "Trento");
+        //Condition.In(initialOffset, 1, 1);
+        //Condition.In(start_time, "15:05:00");            
+    //.};
+    //
+//}
+//
+//machine Schedule2RoutesClock() : Schedule2RoutesCommuter where ForExploration = true
+//{
+    //construct model program from Schedule2RoutesCommuter where Scope  = "parallelTimeTraveller.ModelProgram"   
+//
+//}
+//
+//machine Schedule2RoutesClockTest() : Schedule2RoutesCommuter where ForExploration = true, TestEnabled = true
+//{
+    //construct test cases where Strategy = "LongTests" for Schedule2RoutesClock
+//}
+//

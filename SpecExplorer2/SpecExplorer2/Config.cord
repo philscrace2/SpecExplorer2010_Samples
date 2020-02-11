@@ -1,0 +1,28 @@
+﻿// This is a Spec Explorer coordination script (Cord version 1.0).
+// Here you define configurations and machines describing the
+// exploration task you want to perform.
+
+/// Contains actions of the model, bounds, and switches.
+using Microsoft.Modeling;
+using Implementation;
+using SpecExplorer2;
+
+config Main
+{
+    action abstract static void Implementation.start(string name)
+    where
+    {.
+        Condition.In(name, "alice");        
+    .};
+}
+
+
+
+machine Program() : Main
+{
+    construct model program from Main
+}
+
+
+
+

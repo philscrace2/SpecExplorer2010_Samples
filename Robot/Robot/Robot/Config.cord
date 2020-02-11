@@ -1,0 +1,45 @@
+﻿// This is a Spec Explorer coordination script (Cord version 1.0).
+// Here is where you define configurations and machines describing the
+// exploration to be performed.
+
+using Robot.Sample;
+using Robot;
+
+/// Contains actions of the model, bounds, and switches.
+config Main 
+{
+    /// The two implementation actions that will be modeled and tested
+    action abstract static void Implementation.Start(Robot r);
+    action abstract static void Implementation.Search(Robot r);
+    action abstract static void Implementation.Wait(Robot r);
+    action abstract static void Implementation.Recharge(Robot r);
+
+    switch StepBound = 128;
+    switch PathDepthBound = 128;
+    switch TestClassBase = "vs";
+    switch GeneratedTestPath = "..\\Robot.TestSuite";
+    switch GeneratedTestNamespace = "Robot.TestSuite";
+    switch TestEnabled = false;
+    switch ForExploration = false;
+}
+
+/// Constructs a machine from the model program. 
+/// Since the model is not finite, this machine explodes
+/// and exploration is stopped by a bound.
+/// Switch ForExploration makes the machine appear in Exploration Manager.
+machine RobotModelProgram() : Main where ForExploration = true
+{
+    construct model program from Main 
+    where scope = "Robot.RobotModelProgram" //The value of the namespace switch can be a .Net namespace or a fully-qualified class name.
+}
+
+/// Builds a machine resulting from a link coverage traversal
+/// of the sliced model program. It can be explored or saved as a
+/// C# test suite that can be run in a VSTS unit test project
+/// (by pushing the Generate Test Code button in the Exploration 
+/// Manager toolbar). Most tests should fail, since the sample
+/// implementation is empty.
+machine RobotTestSuite() : Main where ForExploration = true, TestEnabled = true
+{
+    construct test cases where strategy = "ShortTests" for RobotModelProgram()
+}
